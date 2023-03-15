@@ -3,18 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.mycompany</groupId>
-	<artifactId>gilab-jenkins</artifactId>
+	<artifactId>demo-jenkins</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
-	<name>gilab-jenkins</name>
+	<name>demo-jenkins</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.3.0-20210322</app.runtime>
-		<mule.maven.plugin.version>3.5.1</mule.maven.plugin.version>
+		<app.runtime>4.4.0-20230123</app.runtime>
+		<mule.maven.plugin.version>3.8.0</mule.maven.plugin.version>
 	</properties>
 
 	<build>
@@ -22,14 +22,30 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>3.2.0</version>
 			</plugin>
 			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
-			</plugin>
+  <groupId>org.mule.tools.maven</groupId>
+  <artifactId>mule-maven-plugin</artifactId>
+  <version>3.7.1</version>
+  <extensions>true</extensions>
+  <configuration>
+    <cloudHubDeployment>
+      <uri>https://anypoint.mulesoft.com</uri>
+      <muleVersion>4.4.0</muleVersion>
+      <username>saikarru9</username>
+      <password>Sai12345</password>
+      <applicationName>demo-jenkins-dep</applicationName>
+      <environment>sandbox</environment>
+      <region>us-east-1</region>
+      <workers>1</workers>
+      <workerType>MEDIUM</workerType>
+      <properties>
+        <key>value</key>
+      </properties>
+    </cloudHubDeployment>
+  </configuration>
+</plugin>
 		</plugins>
 	</build>
 
@@ -37,22 +53,22 @@
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-http-connector</artifactId>
-			<version>1.5.24</version>
+			<version>1.7.3</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
-			<version>1.2.1</version>
+			<version>1.2.3</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
 
 	<repositories>
 		<repository>
-			<id>anypoint-exchange-v2</id>
+			<id>anypoint-exchange-v3</id>
 			<name>Anypoint Exchange</name>
-			<url>https://maven.anypoint.mulesoft.com/api/v2/maven</url>
+			<url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
 			<layout>default</layout>
 		</repository>
 		<repository>
